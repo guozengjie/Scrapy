@@ -2,6 +2,8 @@
 import scrapy
 from scrapy.selector import Selector
 
+from Demo02.items import Demo02Item
+
 
 class BiqukanSpider(scrapy.Spider):
     name = 'biqukan'
@@ -14,4 +16,8 @@ class BiqukanSpider(scrapy.Spider):
         select = Selector(response)
         dd_list = select.css("dd:nth-child(n+15)")
         for dd in dd_list:
-            pass
+            item = Demo02Item()
+            item['title'] = dd.css('a::text').get()
+            print(item)
+            item['href'] = dd.css('a::attr(href)').get()
+            print(item)
