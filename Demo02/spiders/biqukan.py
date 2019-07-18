@@ -18,6 +18,4 @@ class BiqukanSpider(scrapy.Spider):
         for dd in dd_list:
             item = Demo02Item()
             item['title'] = dd.css('a::text').get()
-            print(item)
             item['href'] = dd.css('a::attr(href)').get()
-            print(item)
